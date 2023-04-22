@@ -151,59 +151,6 @@ GOOGLE_OAUTH2_CLIENT_ID = os.environ["GOOGLE_OAUTH2_CLIENT_ID"]
 
 GOOGLE_OAUTH2_CLIENT_SECRET = os.environ["GOOGLE_OAUTH2_CLIENT_SECRET"]
 
-SOCIALACCOUNT_PROVIDERS = {
-    'google': {
-        'APP': {
-            'client_id': '709797458457-cgtser46g7pltpu2ocpofb9midliqsfr.apps.googleusercontent.com',
-            'secret': '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',
-            'key': ''
-        }
-        ,
-        # listed here:
-        "SCOPE": [
-            "profile",
-            "email",
-        ]
-    },
-    'facebook': {
-        'APP': {
-            'client_id': '758469629021871',
-            'secret': '2a6203dfd44a8cb2771d96941e0be852',
-            'key': ''
-        },
-        # listed here:
-        "SCOPE": [
-            "profile",
-            "email",
-        ]
-    }
-}
-
-SOCIALACCOUNT_PROVIDERS = {
-    'facebook': {
-        'METHOD': 'oauth2',
-        'SDK_URL': '//connect.facebook.net/{locale}/sdk.js',
-        'SCOPE': ['email', 'public_profile'],
-        'AUTH_PARAMS': {'auth_type': 'reauthenticate'},
-        'INIT_PARAMS': {'cookie': True},
-        'FIELDS': [
-            'id',
-            'first_name',
-            'last_name',
-            'middle_name',
-            'name',
-            'name_format',
-            'picture',
-            'short_name'
-        ],
-        'EXCHANGE_TOKEN': True,
-        'LOCALE_FUNC': 'path.to.callable',
-        'VERIFIED_EMAIL': False,
-        'VERSION': 'v13.0',
-        'GRAPH_API_URL': 'https://graph.facebook.com/v13.0',
-    }
-}
-
 LOGIN_REDIRECT_URL = '/account/profile'
 
 FB_APP_ID = os.environ["FB_APP_ID"]
