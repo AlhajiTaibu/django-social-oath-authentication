@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Application Alert</title>
+</head>
+<body>
+        <div class="card"
+        style="font-size: 12px;
+        @import url('https://fonts.google.com/specimen/Open+Sans');
+        font-family: open sans, sans-serif;
+        color: #13293D;
+        border: 1px #7070701c solid;
+        width: fit-content;
+        border-radius: 0px;
+        margin:auto ;
+        margin-top: 5%;
+        padding-top: 5%;
+        justify-content: center;"
+        >
+            <!-- the card body containing the content -->
+                <div class="card-body" style="margin: auto; margin-left:15% ; margin-right: 15%; max-width: max-content;">
+
+                    <!-- the logo -->
+                    <div style="margin: auto;">
+                    <a href="{{url}}"  target="_blank" rel="noopener noreferrer">
+                    <img src="https://i.ibb.co/w0FMHyg/ghmade-e.png"
+                         alt="ghmade-logo-final-final"
+                         border="0"
+                         style="width:220px;">
+                   </a>
+                    </div>
+
+                    <!-- the introduction and user email address -->
+                    <div>
+                        <p>Hello
+                            <span class="companyname" style="font-weight: 900;
+                            font-size: 12px;">Hi {{user}},</span>
+                        </p>
+
+                    <!-- the content of message -->
+                    <p>An applicant with phone number <span class="phonenumber" style="font-weight: bolder;
+                        font-size: 12px;">0244854227</span> has applied to your job post. <strong>Web Design</strong> <br/>
+                    Kindly contact review the application and revert.</p><br/>
+
+
+                    <p>Best Regards, <br/>Your GhMade Support Team<br/><br/></p>
+
+                </div>
+
+                </div>
+
+                <!-- the footer -->
+                <div class="footer" style="background-color:#13293D;
+                    width: 100%;
+                    color: #fff;
+                    height: 90px;
+                    margin-top: 5%;
+                    justify-content: center;
+                    align-items: center;
+                    display: flex;">
+            <p class="footertext" style="color: #fff; text-align: center; padding: 4%;">You received this email because you registered on <a id="website"
+                    href="{{url}}/market" target="_blank"
+                    rel="noopener noreferrer" style="color: #fff; text-decoration: none;">https://google.com</a><br />Please don't reply.</p>
+            </div>
+        </div>
+</body>
+</html>
