@@ -1,7 +1,6 @@
 from urllib.parse import urlencode
 
 import requests
-from allauth.socialaccount.providers.facebook.views import FacebookOAuth2Adapter
 from allauth.socialaccount.providers.google.views import GoogleOAuth2Adapter
 from allauth.socialaccount.providers.oauth2.client import OAuth2Client
 from dj_rest_auth.registration.views import SocialLoginView
@@ -28,7 +27,7 @@ from rest_framework_simplejwt.views import TokenObtainPairView
 from .models import User
 from .script import create_message, send_message, create_message_with_attachment
 from .serializers import RegistrationSerializer, InputSerializer, UserAuthenticationSerializer
-from .service import google_get_access_token, google_get_user_info, google_get_user_id
+from .service import google_get_access_token, google_get_user_info, google_get_user_id, facebook_get_access_token, facebook_get_user_info
 
 
 class Authentication(TokenObtainPairView):
@@ -70,10 +69,6 @@ class RegistrationView(generics.CreateAPIView):
         data = self._send_email_verification(user)
         headers = self.get_success_headers(serializer.data)
         return Response(data, status=status.HTTP_201_CREATED, headers=headers)
-
-
-class FacebookLogin(SocialLoginView):
-    adapter_class = FacebookOAuth2Adapter
 
 
 def jwt_login(*, response: HttpResponse, user: User) -> HttpResponse:
@@ -149,10 +144,6 @@ def index(request):
         return render(request, 'error.html', {'error': error})
 
 
-def home(request):
-    return render(request, 'home.html')
-
-
 def lol(request):
     return render(request, 'lol.html')
 
@@ -203,27 +194,17 @@ def facebook_login(request):
     if 'code' in request.GET:
 
         code = request.GET.get('code')
-        url = 'https://graph.facebook.com/v2.10/oauth/access_token'
-        params = {
-            'client_id': settings.FB_APP_ID,
-            'client_secret': settings.FB_APP_SECRET,
-            'code': code,
-            'redirect_uri': redirect_uri,
-        }
-        response = requests.get(url, params=params)
-        params = response.json()
-        params.update({
-            'fields': 'id,last_name,email,first_name,name'
-        })
-        url = 'https://graph.facebook.com/me'
-        user_data = requests.get(url, params=params).json()
+        data = facebook_get_access_token(code=code,redirect_uri=redirect_uri)
+        user_data = facebook_get_user_info(params=data)
         print(f"hello: {user_data}")
         user_id = user_data.get('id')
         email = user_data.get('email')
+
         if not email:
             email = f"{user_id}@gmail.com"
+
         name = user_data.get('name')
-        if email:
+        if email and name:
             user, _ = User.objects.get_or_create(email=email, username=name)
             return redirect("http://localhost:8000/account/lol")
         else:

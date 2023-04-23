@@ -20,11 +20,7 @@ from Account.views import *
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('account/', include('Account.urls')),
-    # path('blog/', include('blog.urls')),
     path('accounts/', include('allauth.urls')),
-    # path('dj-rest-auth/', include('dj_rest_auth.urls')),
-    # path('dj-rest-auth/registration/', include('dj_rest_auth.registration.urls')),
-    # path('dj-rest-auth/facebook/', FacebookLogin.as_view(), name='fb_login'),
     path('auth/v1/authenticate/google/', GoogleLogin.as_view(), name='google_login'),
     path('account/facebook/', facebook_login , name='facebook_login')
 ]

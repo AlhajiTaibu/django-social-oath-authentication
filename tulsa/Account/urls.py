@@ -1,8 +1,6 @@
 from django.urls import path
 
-from .views import RegistrationView, index, home, profile, lol, Authentication,  ActivateView, facebook_login
-
-app_name = 'Auth'
+from .views import RegistrationView, index, profile, lol, Authentication,  ActivateView
 
 urlpatterns = [
     path('login', Authentication.as_view(), name="login"),
@@ -12,7 +10,6 @@ urlpatterns = [
     # path('facebook/', facebook_login, name="facebook_login"),
     path('register', RegistrationView.as_view(), name="register"),
     path('send', index),
-    path('', home, name="lols"),
     path('lol', lol),
     path('profile', profile),
 

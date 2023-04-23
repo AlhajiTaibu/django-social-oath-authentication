@@ -1,7 +1,8 @@
+from rest_framework import exceptions
 from rest_framework import serializers
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
+
 from .models import User
-from rest_framework import exceptions
 
 
 class InputSerializer(serializers.Serializer):
