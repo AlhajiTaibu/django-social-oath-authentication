@@ -42,6 +42,7 @@ class RegistrationView(generics.CreateAPIView):
 
     def _send_email_verification(self, user: User):
         current_site = get_current_site(self.request)
+        print(f"hmm: {self.request.get_host()}, ohh: {current_site.domain}")
         subject = 'Activate Your Account'
         body = render_to_string(
             './email_verification.html',

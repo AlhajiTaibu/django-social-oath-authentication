@@ -7,7 +7,7 @@
 <body>
 <div>
     <a href=
-    "http://localhost:8000/account/activate/{{uid}}/{{token}}">
+    "{{domain}}{% url 'activate' uid token %}">
     Please activate your account</a>
 </div>
 </body>
