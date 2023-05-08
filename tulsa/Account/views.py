@@ -23,6 +23,7 @@ from rest_framework.views import APIView
 from rest_framework_jwt.compat import set_cookie_with_token
 from rest_framework_jwt.settings import api_settings
 from rest_framework_simplejwt.views import TokenObtainPairView
+from rest_framework_simplejwt.tokens import RefreshToken
 
 from .models import User
 from .script import create_message, send_message, create_message_with_attachment
@@ -123,9 +124,15 @@ class GoogleLogin(SocialLoginView):
             user = User.objects.get(username=user_data['name'])
         except User.DoesNotExist:
             user = User.objects.create_user(username=user_data['name'], email=email)
-        response = redirect("http://localhost:8000/account/lol")
-        response = jwt_login(response=response, user=user)
-        return response
+
+        refresh = RefreshToken.for_user(user)
+
+        return Response({
+            'success': True,
+            'email': user.email,
+            'refresh': str(refresh),
+            'access': str(refresh.access_token),
+        })
 
 
 def index(request):
@@ -207,7 +214,14 @@ def facebook_login(request):
         name = user_data.get('name')
         if email and name:
             user, _ = User.objects.get_or_create(email=email, username=name)
-            return redirect("http://localhost:8000/account/lol")
+            refresh = RefreshToken.for_user(user)
+
+            return Response({
+                'success': True,
+                'email': user.email,
+                'refresh': str(refresh),
+                'access': str(refresh.access_token),
+            })
         else:
             messages.error(
                 request,
