@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 from pathlib import Path
 import os
 from dotenv import load_dotenv
+from datetime import timedelta
 
 load_dotenv()
 
@@ -50,6 +51,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     'allauth.socialaccount.providers.google',
     'allauth.socialaccount.providers.facebook',
+    'rest_framework_simplejwt',
 ]
 
 MIDDLEWARE = [
@@ -137,7 +139,6 @@ SITE_ID = 1
 
 AUTHENTICATION_BACKENDS = [
 
-    # Needed to login by username in Django admin, regardless of `allauth`
     'django.contrib.auth.backends.ModelBackend',
 
     'allauth.account.auth_backends.AuthenticationBackend',
@@ -154,3 +155,8 @@ LOGIN_REDIRECT_URL = '/account/profile'
 
 FB_APP_ID = os.environ["FB_APP_ID"]
 FB_APP_SECRET = os.environ["FB_APP_SECRET"]
+
+# SIMPLE_JWT = {
+#     "ACCESS_TOKEN_LIFETIME": timedelta(days=30),
+#     "REFRESH_TOKEN_LIFETIME": timedelta(days=30),
+# }

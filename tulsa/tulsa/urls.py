@@ -22,5 +22,9 @@ urlpatterns = [
     path('account/', include('Account.urls')),
     path('accounts/', include('allauth.urls')),
     path('auth/v1/authenticate/google/', GoogleLogin.as_view(), name='google_login'),
-    path('account/facebook/', facebook_login , name='facebook_login')
+    path('account/facebook/', facebook_login, name='facebook_login')
 ]
+
+admin.site.site_header = "Tulsa Admin"
+admin.site.site_title = "Tulsa Admin Portal"
+admin.site.index_title = "Welcome to Tulsa Portal"

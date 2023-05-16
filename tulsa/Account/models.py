@@ -1,7 +1,7 @@
 from django.core.exceptions import ValidationError
 from django.core.validators import validate_email
 from django.db import models
-from django.contrib.auth.models import BaseUserManager, AbstractBaseUser
+from django.contrib.auth.models import BaseUserManager, AbstractBaseUser, PermissionsMixin
 from django.core.management.utils import get_random_secret_key
 
 
@@ -31,7 +31,7 @@ class UserManager(BaseUserManager):
         return user
 
 
-class User(AbstractBaseUser):
+class User(AbstractBaseUser,PermissionsMixin):
     email = models.EmailField(max_length=254,unique=True)
     username = models.CharField(max_length=150)
     is_staff = models.BooleanField(default=False)

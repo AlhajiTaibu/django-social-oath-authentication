@@ -121,7 +121,7 @@ class GoogleLogin(SocialLoginView):
         if not email:
             email = f"{user_id}@mail.com"
         try:
-            user = User.objects.get(username=user_data['name'])
+            user = User.objects.get(username=user_data['name'],email=email)
         except User.DoesNotExist:
             user = User.objects.create_user(username=user_data['name'], email=email)
 
