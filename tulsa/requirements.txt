@@ -20,7 +20,6 @@ djangorestframework-simplejwt==5.2.2
 drf-jwt==1.19.2
 executing==1.2.0
 filelock==3.12.0
-GDAL==3.6.3
 google-api-core==2.10.2
 google-api-python-client==2.65.0
 google-auth==2.13.0
