@@ -28,6 +28,10 @@ jobs:
     - name: Run Tests
       env:
         SECRET_KEY: ${{ secrets.SECRET_KEY }}
+        GOOGLE_OAUTH2_CLIENT_ID: ${{ secrets.GOOGLE_OAUTH2_CLIENT_ID }}
+        GOOGLE_OAUTH2_CLIENT_SECRET: ${{ secrets.GOOGLE_OAUTH2_CLIENT_SECRET }}
+        FB_APP_ID: ${{ secrets.FB_APP_ID }}
+        FB_APP_SECRET: ${{ secrets.FB_APP_SECRET }}
 
       run: |
         python tulsa/manage.py test
